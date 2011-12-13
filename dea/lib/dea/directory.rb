@@ -9,10 +9,16 @@ require 'pathname'
 # If +app+ is not specified, a Rack::File of the same +root+ will be used.
 
 module DEA
+
   class FileServer < Rack::File
+
     # based on Rack::File, just add the NOFOLLOW flag
     def each
-      File.open(@path, File::RDONLY | File::NOFOLLOW) { |file|
+      flags = File::RDONLY | File::BINARY
+      if File::const_defined? 'NOFOLLOW'
+        flags |= File::NOFOLLOW
+      end
+      File.open(@path, flags) { |file|
         while part = file.read(8192)
           yield part
         end

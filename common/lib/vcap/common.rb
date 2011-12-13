@@ -2,12 +2,16 @@
 require 'fileutils'
 require 'logging'
 require 'socket'
+require 'rbconfig'
+require 'uuidtools'
 
 # VMware's Cloud Application Platform
 
 module VCAP
 
   A_ROOT_SERVER = '198.41.0.4'
+
+  WINDOWS = Config::CONFIG['host_os'] =~ /mswin|mingw/
 
   def self.local_ip(route = A_ROOT_SERVER)
     route ||= A_ROOT_SERVER
@@ -18,16 +22,18 @@ module VCAP
   end
 
   def self.secure_uuid
-    result = File.open('/dev/urandom') { |x| x.read(16).unpack('H*')[0] }
+    result = UUIDTools::UUID.random_create.to_s.delete('-')
   end
 
   def self.grab_ephemeral_port
     socket = TCPServer.new('0.0.0.0', 0)
     socket.setsockopt(Socket::SOL_SOCKET, Socket::SO_REUSEADDR, true)
-    Socket.do_not_reverse_lookup = true
+    orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true
     port = socket.addr[1]
     socket.close
     return port
+  ensure
+    Socket.do_not_reverse_lookup = orig
   end
 
   def self.uptime_string(delta)
@@ -93,7 +99,11 @@ module VCAP
 
   def self.process_running?(pid)
     return false unless pid && (pid > 0)
-    output = %x[ps -o rss= -p #{pid}]
+    if WINDOWS
+      output = %x[tasklist /nh /fo csv /fi "pid eq #{pid}"]
+    else
+      output = %x[ps -o rss= -p #{pid}]
+    end
     return true if ($? == 0 && !output.empty?)
     # fail otherwise..
     return false

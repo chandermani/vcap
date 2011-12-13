@@ -1,0 +1,27 @@
+source "http://rubygems.org"
+
+gem 'bundler', '>= 1.0.10'
+gem 'nats', '>= 0.4.10', :require => 'nats/client'
+gem 'eventmachine',  '>= 0.12.10'
+gem 'em-http-request', '>= 1.0.0.beta.3', :require => 'em-http'
+
+gem 'rack', :require => ["rack/utils", "rack/mime"]
+gem 'rake'
+gem 'thin'
+gem 'yajl-ruby', :require => ['yajl', 'yajl/json_gem']
+gem 'logging', '>= 1.5.0'
+
+gem 'win32-service'
+gem 'win32-eventlog'
+gem 'win32-process'
+
+gem 'vcap_common', :path => '../common'
+gem 'vcap_logging', :require => ['vcap/logging']
+
+gem 'uuidtools'
+
+group :test do
+  gem "rspec"
+  gem "rcov"
+  gem "ci_reporter"
+end
