@@ -76,6 +76,9 @@ begin
       value.sub!(/["']$/, '') if not value.nil?
       value.gsub!(/"/, '\"') if not value.nil? # Escape embedded quotes
 
+      cmd = %Q|#{dea_appcmd} set config #{site_name} /commit:site /section:appSettings "/-[key='#{key}']"|
+      run_appcmd(cmd, false)
+
       cmd = %Q|#{dea_appcmd} set config #{site_name} /commit:site /section:appSettings "/+[key='#{key}',value='#{value}']"|
       run_appcmd(cmd)
     end
