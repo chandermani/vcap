@@ -24,7 +24,7 @@ def run_appcmd(cmd, check_rval=true)
   rval = false
   while tries < 5
     rval = system(syscmd)
-    if (rval)
+    if (rval || false == check_rval)
       return
     else
       sleep 2
