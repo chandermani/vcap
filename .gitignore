@@ -13,3 +13,7 @@ ci-working-dir
 .rvmrc
 *.pid
 tags
+
+.DS_Store
+
+.DS_Store
