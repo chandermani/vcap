@@ -3,22 +3,22 @@ VMware's Cloud Application Platform
 
 Copyright (c) 2009-2011 VMware, Inc.
 
-What is Cloud Foundry?
+What is Iron Foundry?
 ----------------------
 
-Cloud Foundry is an open platform-as-a-service (PaaS). The system supports
+Iron Foundry is an open platform-as-a-service (PaaS). The system supports
 multiple frameworks, multiple application infrastructure services and
 deployment to multiple clouds.
 
 License
 -------
 
-Cloud Foundry uses the Apache 2 license.  See LICENSE for details.
+Iron Foundry uses the Apache 2 license.  See LICENSE for details.
 
 Installation Notes
 ------------------
 
-Cloud Foundry is made up of a number of system components (cloud controller,
+Iron Foundry is made up of a number of system components (cloud controller,
 health manager, dea, router, etc.). These components can run co-located in a
 single vm/single os or can be spread across several machines/vm's.
 
@@ -67,17 +67,7 @@ beginning and towards the end. The entire process takes ~1 hour, so just
 keep a loose eye on it.
 
      sudo apt-get install curl
-     bash < <(curl -s -k -B https://raw.github.com/cloudfoundry/vcap/master/setup/install)
-
-_**Experimental**_ Or, instead of the above steps, try the new Chef based
-installation.  Note: the Chef based setup will eventually replace the
-vcap_setup based install above.  The Chef recipies don't cover all frameworks
-and runtimes supported by the traditional installation method, e.g. Erlang
-isn't supported yet, but it will soon.  At that point, the vcap_setup based
-installer will be removed from the source tree.
-
-     sudo apt-get install curl
-     bash < <(curl -s -k -B https://raw.github.com/cloudfoundry/vcap/master/dev_setup/bin/vcap_dev_setup)
+     bash < <(curl -s -k -B https://raw.github.com/IronFoundry/vcap/master/setup/install)
 
 NOTE: The automated setup does not auto-start the system. Once you are
 done with the setup, exit your current shell, restart a new shell and continue
@@ -110,7 +100,7 @@ If you are not already running a local web server, use port 80 as your local por
 otherwise you may want to use 8080 or another common http port.
 
 Once you do this, from both your mac, and from within the vm, `api.vcap.me` and `*.vcap.me`
-will map to localhost which will map to your running Cloud Foundry instance.
+will map to localhost which will map to your running Iron Foundry instance.
 
 
 Trying your setup
