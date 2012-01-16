@@ -39,13 +39,13 @@ nginx:
 # if log_file is set, it must be a fully-qualified path,
 # because the bin/vcap script reads it directly from the file.
 logging:
-  level: debug2
-# file:
+  level: debug
+  file: /var/vcap/sys/log/cc.log
 
 # Settings for the rails logger
 rails_logging:
   level: debug
-# file:
+  file: /var/vcap/sys/log/rails.log
 
 redis:
   host: 127.0.0.1
@@ -105,7 +105,7 @@ staging:
     password: ZNVfdase9
 
 # admin support
-admins: [derek@gmail.com, foobar@vmware.com]
+admins: [foo@bar.com]
 https_required: false
 https_required_for_admins: false
 

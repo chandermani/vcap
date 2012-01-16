@@ -1,13 +1,13 @@
 spec = Gem::Specification.new do |s|
   s.name = 'vcap_common'
-  s.version = '1.0.3'
-  s.date = '2011-02-09'
+  s.version = '1.0.3.ironfoundry'
+  s.date = '2012-01-16'
   s.summary = 'vcap common'
   s.homepage = "http://github.com/vmware-ac/core"
   s.description = 'common vcap classes/methods'
 
-  s.authors = ["Derek Collison"]
-  s.email = ["derek.collison@gmail.com"]
+  s.authors = ["Derek Collison, Luke Bakken"]
+  s.email = ["derek.collison@gmail.com, luke.bakken@gmail.com"]
 
   s.add_dependency('eventmachine', '~> 0.12.11.cloudfoundry.3')
   s.add_dependency('thin', '~> 1.3.1')

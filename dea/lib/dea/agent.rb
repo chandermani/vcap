@@ -31,6 +31,8 @@ module DEA
   require 'directory'
   require 'secure'
 
+  puts "\$: #{$:}"
+
   if VCAP::WINDOWS # TODO 
     require 'win32/process'
   end
