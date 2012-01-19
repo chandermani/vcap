@@ -197,8 +197,8 @@ class AppManager
         (index...max_to_start).each do |i|
           message[:index] = i
           dea_id = find_dea_for(message)
+          json = Yajl::Encoder.encode(message)
           if dea_id
-            json = Yajl::Encoder.encode(message)
             CloudController.logger.debug("Sending start message #{json} to DEA #{dea_id}")
             NATS.publish("dea.#{dea_id}.start", json)
           else
@@ -452,8 +452,8 @@ class AppManager
         message[:executableUri] = download_app_uri(message[:executableUri])
         message[:index] = index
         dea_id = find_dea_for(message)
+        json = Yajl::Encoder.encode(message)
         if dea_id
-          json = Yajl::Encoder.encode(message)
           CloudController.logger.debug("Sending start message #{json} to DEA #{dea_id}")
           NATS.publish("dea.#{dea_id}.start", json)
         else
@@ -474,7 +474,10 @@ class AppManager
     }
     json_msg = Yajl::Encoder.encode(find_dea_message)
     result = NATS.timed_request('dea.discover', json_msg, :timeout => 2).first
-    return nil if result.nil?
+    if result.nil?
+        CloudController.logger.debug "Received nothing in response to dea.discover request #{json_msg}"
+        return nil
+    end
     CloudController.logger.debug "Received #{result.inspect} in response to dea.discover request"
     Yajl::Parser.parse(result, :symbolize_keys => true)[:id]
   end
