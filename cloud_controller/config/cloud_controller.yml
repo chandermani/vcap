@@ -133,6 +133,8 @@ builtin_services:
 
 # used for /info/runtimes endpoint (served unfiltered as JSON)
 runtimes:
+  aspdotnet40:
+    version: 4.0.30319.0
   ruby18:
     version: 1.8.7
   ruby19:
