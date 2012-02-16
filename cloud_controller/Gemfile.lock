@@ -179,5 +179,5 @@ DEPENDENCIES
   vcap_common
   vcap_logging
   vcap_stager (~> 0.1.8)
-  vcap_staging
+  vcap_staging (>= 0.1.32.ironfoundry)
   yajl-ruby (~> 0.8.3)
