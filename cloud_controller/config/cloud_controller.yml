@@ -40,7 +40,7 @@ nginx:
 # because the bin/vcap script reads it directly from the file.
 logging:
   level: debug
-  file: /var/vcap/sys/log/cc.log
+  file: /var/vcap/sys/log/cloud_controller.log
 
 # Settings for the rails logger
 rails_logging:
