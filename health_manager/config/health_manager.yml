@@ -3,12 +3,15 @@
 # is used to choose the right ip address (think of hosts that have multiple nics
 # and IP addresses assigned to them) of the host running the Health Manager. Default
 # value of nil, should work in most cases.
-local_route: 127.0.0.1
+local_route: 172.21.193.11
 
 # NATS message bus URI
 mbus: nats://localhost:4222/
+
 logging:
-  level: debug
+  level: info
+  file: /var/vcap/sys/log/healthmanager.log
+
 pid: /var/vcap/sys/run/healthmanager.pid
 
 # This database is shared with the cloud controller.

@@ -7,6 +7,7 @@ sock: /tmp/router.sock
 mbus: nats://localhost:4222
 logging:
   level: info
+  file: /var/vcap/sys/log/router.log
 pid: /var/vcap/sys/run/router.pid
 
 # Used for /healthz and /vars endpoints. If not provided random

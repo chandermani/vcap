@@ -8,7 +8,7 @@ support_address: http://support.cloudfoundry.com
 # is used to choose the right ip address (think of hosts that have multiple nics
 # and IP addresses assigned to them) of the host running the cloud controller. Default
 # value of nil, should work in most cases.
-local_route: 127.0.0.1
+local_route: 172.21.193.11
 
 # Specifies if new users are allowed to register via VMC
 allow_registration: true
@@ -39,13 +39,13 @@ nginx:
 # if log_file is set, it must be a fully-qualified path,
 # because the bin/vcap script reads it directly from the file.
 logging:
-  level: debug2
-# file:
+  level: debug
+  file: /var/vcap/sys/log/cc.log
 
 # Settings for the rails logger
 rails_logging:
   level: debug
-# file:
+  file: /var/vcap/sys/log/rails.log
 
 redis:
   host: 127.0.0.1
@@ -105,7 +105,7 @@ staging:
     password: ZNVfdase9
 
 # admin support
-admins: [derek@gmail.com, foobar@vmware.com]
+admins: [luke.bakken@tier3.com]
 https_required: false
 https_required_for_admins: false
 
