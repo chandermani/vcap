@@ -1,32 +1,20 @@
----
-# Cloud Controller URI
-external_uri: api.vcap.me
+external_uri: api.gofoundry.net
 description: "VMware's Cloud Application Platform"
-support_address: http://support.cloudfoundry.com
+support_address: http://help.ironfoundry.org
+local_route: 10.91.2.12
 
-# local_route is the IP address of a well known server on your network, it
-# is used to choose the right ip address (think of hosts that have multiple nics
-# and IP addresses assigned to them) of the host running the cloud controller. Default
-# value of nil, should work in most cases.
-local_route: 127.0.0.1
-
-# Specifies if new users are allowed to register via VMC
-allow_registration: true
-
-# Allow applications to register URIs that are outside your domain.
-# Legacy (FIXME REMOVE)
-allow_external_app_uris: false
+allow_registration: false
+allow_external_app_uris: true
 
 # This dicatates what the uri namespace rules
 # are for apps. Admins can overide any of the
 # below accept taking a used uri.
-
 app_uris:
   # Allow applications to register URIs that are outside your domain.
   allow_external: false
-#  reserved_file:
-#  reserved_list: [www, test, dash, register, foo, bar]
-#  reserved_length: 3
+  reserved_list: [www, test, dash, register, foo, bar, api]
+  reserved_length: 3
+# reserved_file:
 
 external_port: 9022 #public CC port
 
@@ -39,13 +27,13 @@ nginx:
 # if log_file is set, it must be a fully-qualified path,
 # because the bin/vcap script reads it directly from the file.
 logging:
-  level: debug2
-# file:
+  level: debug
+  file: /var/vcap/sys/log/cc.log
 
 # Settings for the rails logger
 rails_logging:
   level: debug
-# file:
+  file: /var/vcap/sys/log/rails.log
 
 redis:
   host: 127.0.0.1
@@ -105,7 +93,7 @@ staging:
     password: ZNVfdase9
 
 # admin support
-admins: [derek@gmail.com, foobar@vmware.com]
+admins: [luke.bakken@tier3.com, caledh@gmail.com, cale.hoopes@tier3.com, admin@ironfoundry.org]
 https_required: false
 https_required_for_admins: false
 
@@ -114,8 +102,8 @@ https_required_for_admins: false
 default_account_capacity:
   memory:   2048
   app_uris: 4
-  services: 16
-  apps:     20
+  services: 4
+  apps:     4
 
 # Services we provide, and their tokens. Avoids bootstrapping DB.
 builtin_services:
@@ -141,7 +129,7 @@ service_broker:
     token: "0xdeadbeef"
 
 # Enable/disable starting apps in debug modes.
-allow_debug: true
+allow_debug: false
 
 # Supported runtime versions and debug modes.
 # Used for /info/runtimes endpoint (served unfiltered as JSON)
@@ -153,7 +141,7 @@ runtimes:
   ruby19:
     version: 1.9.2
   node:
-    version: 0.4.[2-9]
+    version: 0.4.12
   java:
     version: 1.6.0
     debug_modes:
@@ -173,3 +161,4 @@ runtimes:
 #  port: 34500
 #  user: thin
 #  password: thin
+
