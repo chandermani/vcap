@@ -60,9 +60,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 echo "Installing rvm"
-bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer) > /tmp/install_rvm
-bash /tmp/install_rvm
-rm /tmp/install_rvm
+bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer) > /tmp/install_rvm.out
 
 echo "Activate rvm"
 if [ "$(id -u)" != "0" ]; then
