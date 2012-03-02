@@ -8,7 +8,7 @@ local_route: 127.0.0.1
 # NATS message bus URI
 mbus: nats://localhost:4222/
 logging:
-  level: debug
+  level: info
   file: /var/vcap/sys/log/health_manager.log
 pid: /var/vcap/sys/run/healthmanager.pid
 
